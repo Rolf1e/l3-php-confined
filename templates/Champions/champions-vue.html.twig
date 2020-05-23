@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/champion.css') }}">
+    <div class="champion-block">
+        {% for champion in champions %}
+            <div class="card champion-card">
+                <div id="champ-infos">
+                    <p class="card-title">{{ champion.getName() }}</p>
+                    <img src="{{ champion.getImage() }}" class="card-img-top champion-image"
+                         alt=" {{ champion.getName() }}">
+                    <div class="champion-infos">
+                        {% for key, info in champion.getInfo() %}
+                            <p>{{ key }} : {{ info }}</p>
+                        {% endfor %}
+                        </p>
+                    </div>
+                    <p class="card-text">
+                    <p class="champion-title">{{ champion.getTitle() }}</p>
+                    <div class="champion-stats">
+                        {% for key, stat in champion.getStats() %}
+                            <p>{{ key }} : {{ stat }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <p>{{ champion.getBlurb() }}</p>
+                <p class="champion-tags">Tags :
+                    {% for tag in champion.getTags() %}
+                        {{ tag }}
+                    {% endfor %}
+                </p>
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

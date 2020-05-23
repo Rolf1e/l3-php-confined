@@ -4,9 +4,10 @@
 namespace App\Controller;
 
 use App\Service\ChampionService;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ChampionController
+class ChampionController extends AbstractController
 {
 
     /**
@@ -14,6 +15,8 @@ class ChampionController
      */
     public function getChampionList(ChampionService $championService)
     {
-        return $championService->getChampionList();
+        return $this->render(
+            'Champions/champions-vue.html.twig',
+            ['champions' => $championService->getChampionList()]);
     }
 }

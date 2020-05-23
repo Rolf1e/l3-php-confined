@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use App\Infra\Rest\ChampionRestClient;
 
 class ChampionService
@@ -15,8 +14,8 @@ class ChampionService
         $this->championRestClient = new ChampionRestClient();
     }
 
-    public function getChampionList() {
-        dd($this->championRestClient);
+    public function getChampionList()
+    {
         return $this->championRestClient->getChampionList();
     }
 }
