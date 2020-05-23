@@ -39,8 +39,8 @@
 
 .champion-infos {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 30px;
+    left: 120px;
 }
 
 .champion-infos p {
