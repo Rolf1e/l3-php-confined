@@ -28,7 +28,9 @@
                         {{ tag }}
                     {% endfor %}
                 </p>
-
+                {% if champion.isFree() == true %}
+                    <p class="champion-free">FREE</p>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

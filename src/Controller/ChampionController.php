@@ -10,13 +10,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class ChampionController extends AbstractController
 {
 
+    private $championService;
+
+
+    public function __construct(ChampionService $championService)
+    {
+        $this->championService = $championService;
+    }
+
     /**
      * @Route("/champion-list")
      */
-    public function getChampionList(ChampionService $championService)
+    public function getChampionList()
     {
         return $this->render(
             'Champions/champions-vue.html.twig',
-            ['champions' => $championService->getChampionList()]);
+            ['champions' => $this->championService->getChampionList()]);
     }
 }

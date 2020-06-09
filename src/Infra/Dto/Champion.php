@@ -17,6 +17,7 @@ class Champion
     private $tags;
     private $partype;
     private $stats;
+    private $isFree;
 
     /**
      * Champion constructor.
@@ -32,7 +33,7 @@ class Champion
      * @param $partype
      * @param $stats
      */
-    public function __construct($version, $id, $key, $name, $title, $blurb, $info, $image, $tags, $partype, $stats)
+    public function __construct($version, $id, $key, $name, $title, $blurb, $info, $image, $tags, $partype, $stats, $isFree)
     {
         $this->version = $version;
         $this->id = $id;
@@ -45,6 +46,7 @@ class Champion
         $this->tags = $tags;
         $this->partype = $partype;
         $this->stats = $stats;
+        $this->isFree = $isFree;
     }
 
     /**
@@ -135,6 +137,12 @@ class Champion
         return $this->stats;
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function isFree()
+    {
+        return $this->isFree;
+    }
 
 }
