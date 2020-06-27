@@ -7,14 +7,19 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
               integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
               crossorigin="anonymous">
-        <link rel="javascripts" href="{{ asset('js/mouse_events.js') }}">
         <link rel="stylesheet" href="{{ asset('css/champion.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     {% endblock %}
 
 </head>
 <body>
+<script src="{{ asset('js/champion.js') }}">
+</script>
+<button class="champion-button" onclick="allChanpions()">All Champions</button>
+<button class="champion-button" onclick="onlyFree()">Free champions</button>
+<button class="champion-button" onclick="withoutFree()">Champions</button>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>
 </html>
+
