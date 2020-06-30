@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Infra\Dto;
 
 

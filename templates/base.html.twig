@@ -15,10 +15,9 @@
 <body>
 <script src="{{ asset('js/champion.js') }}">
 </script>
-<button class="champion-button" onclick="allChanpions()">All Champions</button>
-<button class="champion-button" onclick="onlyFree()">Free champions</button>
-<button class="champion-button" onclick="withoutFree()">Champions</button>
+{% block userform %}{% endblock %}
 {% block body %}{% endblock %}
+{% block sumonner %}{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>
 </html>
