@@ -1,59 +1,67 @@
 .champion-card {
-    width: 300px;
-    display: inline-block;
+	width: 300px;
+	display: inline-block;
 }
 
 .champion-image {
-    width: 100px;
-    padding-left: 10px;
+	width: 100px;
+	padding-left: 10px;
 }
 
 .champion-stats {
-    display: none;
-    border: 1px black solid;
-    background-color: black;
+	display: none;
+	border: 1px black solid;
+	background-color: black;
 }
 
 .champion-stats p {
-    padding: 0;
-    margin: 0;
-    color: white;
+	padding: 0;
+	margin: 0;
+	color: white;
 }
 
 .champion-title {
-    font-size: 10px;
-    font-style: italic;
+	font-size: 10px;
+	font-style: italic;
 }
 
 #champ-infos:hover > .champion-stats {
-    display: block;
-    position: absolute;
-    top: 20px;
-    left: 50px;
-    font-size: 10px;
+	display: block;
+	position: absolute;
+	top: 20px;
+	left: 50px;
+	font-size: 10px;
 }
 
 .champion-tags {
-    font-style: italic;
-    font-size: 10px;
+	font-style: italic;
+	font-size: 10px;
 }
 
 .champion-infos {
-    position: absolute;
-    top: 30px;
-    left: 120px;
+	position: absolute;
+	top: 30px;
+	left: 120px;
 }
 
 .champion-infos p {
-    font-size: 15px;
-    margin: 0;
+	font-size: 15px;
+	margin: 0;
 }
 
 .champion-free {
-    position: absolute;
-    top: 130px;
-    right: 40px;
-    color: red;
+	position: absolute;
+	top: 130px;
+	right: 40px;
+	color: red;
 }
 
+.champion-paginator {
+	margin: 30px auto;
+	width: 250px;
+}
+
+.pagination {
+	text-align: center;
+}
 

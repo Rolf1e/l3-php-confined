@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Service\ChampionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ChampionController extends AbstractController
 {
@@ -20,10 +22,15 @@ class ChampionController extends AbstractController
     /**
      * @Route("/champion-list")
      */
-    public function getChampionList()
+    public function getChampionList(PaginatorInterface $paginator, Request $request)
     {
+	$userData = $paginator->paginate(
+		$this->championService->getChampionList(),
+		$request->query->getInt('page', 1),
+		9
+	);
         return $this->render(
             'Champions/champions-vue.html.twig',
-            ['champions' => $this->championService->getChampionList()]);
+            ['champions' => $userData]);
     }
 }
