@@ -27,6 +27,7 @@ class LeagueEntry
 		$this->summonerName = $summonerName;
 		$this->queueType = $queueType;
 		$this->tier = $tier;
+		$this->rank = $rank;
 		$this->leaguePoints = $leaguePoints;
 		$this->wins = $wins;
 		$this->losses = $losses;

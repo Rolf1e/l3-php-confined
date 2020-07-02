@@ -30,9 +30,9 @@ class Summoner
 		return $this->accountId;
 	}
 
-	public function getProfileIconId()
+	public function getProfileIcon()
 	{
-		return $this->profileIconId;
+		return  HTTPS_DDRAGON_LEAGUEOFLEGENDS_COM. HTTPS_SUMMONER_ICON . $this->profileIconId . '.png';
 	}
 
 	public function getRevisionDate()

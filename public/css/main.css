@@ -1,4 +1,26 @@
-.champion-block {
-    width: 910px;
-    margin: auto;
+.menu {
+	width: 750px;
+	height: 100px;
+	margin: auto;
 }
+
+.main-button {
+	border: 1px blue solid;
+	margin: 2px;
+	display: inline-block;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.search-bar {
+	width: 500px;
+	display: inline-block;
+}
+
+.champion-block {
+	width: 910px;
+	margin: auto;
+}
+

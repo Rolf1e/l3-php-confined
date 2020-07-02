@@ -5,6 +5,7 @@ namespace App\Infra\Rest;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Infra\Dto\Summoner;
 use App\Infra\Dto\LeagueEntry;
+use App\Infra\Dto\UserInfos;
 use App\Infra\Exception\UserDoesnotExistException;
 
 class UserInfosRestClient extends RestClient 
@@ -22,7 +23,8 @@ class UserInfosRestClient extends RestClient
 		if(200 != $response->getStatusCode()) {
 			throw new UserDoesnotExistException($username);
 		}
-		return $this->serializer->deserialize($response->getContent(), 'App\Infra\Dto\LeagueEntry[]', 'json');
+		$leagueEntry = $this->serializer->deserialize($response->getContent(), 'App\Infra\Dto\LeagueEntry[]', 'json');
+		return new UserInfos($summoner, $leagueEntry);
 
 	}	
 

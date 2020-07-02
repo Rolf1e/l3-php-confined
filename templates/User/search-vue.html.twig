@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block userform %}
 
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-
-    <input type="submit"/>
-{{ form_end(form) }}
-
+<div class="menu">
+	<a class="main-button p-3 mb-2 bg-primary text-white" href="/champion-list" class="">Champions</a>
+	<div class="search-bar">
+		{{ form_start(form) }}
+		<div class="inline">
+			{{ form_row(form.user) }}
+		</div>
+		    <input class="inline" type="submit"/>
+		{{ form_end(form) }}
+	</div>
+</div>
 {% endblock %}
 

@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block sumonner %}
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
-
-<div class="user-block">
-	{% for queue in user %}
-		<div class="card user-card">
+	<a class="main-button p-3 mb-2 bg-primary text-white" href="/champion-list" class="">Champions</a>
+	<a class="main-button p-3 mb-2 bg-primary text-white" href="/" class="">Home</a>
+<div class="user-block card user-card">
+	{% set summoner = user.getSummoner() %}
+	{{ summoner.getName() }}
+	<img class="user-icon" src="{{ summoner.getProfileIcon() }}">
+	{% for queue in user.getLeagueEntry() %}
+		<div class="card">
 			<div class="rank">
 				<p>{{ queue.getQueueType() }} :  {{ queue.getTier() }} {{ queue.getRank() }}</p>
 				<p><p class="league-points">{{ queue.getLeaguePoints() }} points</p> {{ queue.getWins() }} W | {{ queue.getLosses() }} L </p>

@@ -18,5 +18,6 @@ class UserService
 	{
 		return $this->userRestClient->getUserInfos($username);
 	}
+
 }
 

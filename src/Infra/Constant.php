@@ -1,7 +1,7 @@
 <?php
 
 //API key
-define('API_KEY', 'RGAPI-8cae29f5-a8bc-497e-a6b3-6bede7cfa8da');
+define('API_KEY', 'RGAPI-771a136f-881a-4b17-8886-1854a4706350');
 
 //Champion list
 define('HTTPS_DDRAGON_LEAGUEOFLEGENDS_COM', 'https://ddragon.leagueoflegends.com/');
@@ -14,4 +14,7 @@ define('BASE_URL', 'https://euw1.api.riotgames.com/');
 //username
 define('HTTPS_SUMMONER_ENCRYPTED', 'lol/summoner/v4/summoners/by-name/');
 define('HTTPS_SUMMONER_INFOS', '/lol/league/v4/entries/by-summoner/');
+
+//icon 
+define('HTTPS_SUMMONER_ICON', 'cdn/10.11.1/img/profileicon/');
 

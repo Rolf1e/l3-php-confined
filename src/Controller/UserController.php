@@ -18,7 +18,7 @@ class UserController extends AbstractController
 
 
 	/**
-	 * @Route("/search-user", name = "research")
+	 * @Route("", name = "research")
 	 */
 	public function form(Request $request)
 	{
