@@ -3,7 +3,7 @@
 
 namespace App\Infra\Rest;
 
-use App\Infra\Dto\Champion;
+use App\Entity\Champion;
 use Symfony\Component\HttpClient\HttpClient;
 
 class ChampionRestClient extends RestClient

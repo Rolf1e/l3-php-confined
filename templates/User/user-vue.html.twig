@@ -16,5 +16,16 @@
 		</div>
 	{% endfor %}
 </div>
+<div class="registration-form">
+	{{ form_start(registerForm) }}
+		<div class="inline">
+			{{ form_row(registerForm.username) }}
+			{{ form_row(registerForm.summoner) }}
+			{{ form_row(registerForm.email) }}
+			{{ form_row(registerForm.password) }}
+		</div>
+		<input class="inline" type="submit"/>
+	{{ form_end(registerForm) }}
+</div>
 {% endblock %}
 

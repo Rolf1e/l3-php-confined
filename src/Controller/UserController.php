@@ -5,11 +5,14 @@ use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends AbstractController
 {
 	private $userService;
+	private $registerForm;
 
 	public function __construct(UserService $userService)
 	{
@@ -43,11 +46,27 @@ class UserController extends AbstractController
 	/**
 	 * @Route("/summoner/{username}", name="summoner")
 	 */
-	public function infos($username) 
-	{
+	public function infos(Request $request, $username) 
+	{	
+		$this->registerForm = $this->createFormBuilder()
+	       ->add('username', TextType::class)
+	       ->add('summoner', TextType::class)
+	       ->add('email', EmailType::class)
+	       ->add('password', PasswordType::class)
+	       ->getForm();
+
+		$this->registerForm->handleRequest($request);
+		if($this->registerForm->isSubmitted() && $this->registerForm->isValid()) {
+			$data = $this->registerForm->getData();
+			$entityManager = $this->getDoctrine()->getManager();
+			$this->userService->createUser($entityManager, $data['username'], $data['email'], $data['password'], $data['summoner']);
+		}
+
+
 		return $this->render(
 			'User/user-vue.html.twig',
-			['user' => $this->userInfos($username)]
+			['user' => $this->userInfos($username),
+			'registerForm' => $this->registerForm->createView()]
 		);
 	}
 

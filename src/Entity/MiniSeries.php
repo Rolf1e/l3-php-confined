@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Infra\Dto;
-
+namespace App\Entity;
 
 class MiniSeries
 {

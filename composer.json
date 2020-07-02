@@ -22,7 +22,7 @@
         "symfony/mailer": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "*",
-        "symfony/orm-pack": "*",
+        "symfony/orm-pack": "^1.0",
         "symfony/process": "*",
         "symfony/security-bundle": "*",
         "symfony/serializer-pack": "*",
@@ -35,7 +35,7 @@
     },
     "require-dev": {
         "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.19",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*"
     },
