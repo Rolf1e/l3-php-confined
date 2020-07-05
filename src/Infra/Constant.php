@@ -1,7 +1,7 @@
 <?php
 
 //API key
-define('API_KEY', 'RGAPI-121ac639-5037-4452-b211-536ecdf09b1b');
+define('API_KEY', 'RGAPI-b43d31cf-5b78-4a18-985d-ff060b253c7b');
 
 //Champion list
 define('HTTPS_DDRAGON_LEAGUEOFLEGENDS_COM', 'https://ddragon.leagueoflegends.com/');

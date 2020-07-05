@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block userform %}
-
+<div>
+	<a class="main-button p-3 mb-2 bg-primary text-white" href="/champion-list">Champions</a>
+	<a class="main-button p-3 mb-2 bg-primary text-white" href="/register">Register</a>
+	<a class="main-button p-3 mb-2 bg-primary text-white" href="/login">login</a>
+</div>
 <div class="menu">
-	<a class="main-button p-3 mb-2 bg-primary text-white" href="/champion-list" class="">Champions</a>
+	<a href="https://play.na.leagueoflegends.com/en_US"><img src="{{ asset('images/lol-logo.png')}}" class="lol-logo"></a>
 	<div class="search-bar">
 		{{ form_start(form) }}
 		<div class="inline">
-			{{ form_row(form.user) }}
+			{{ form_row(form.summoner) }}
 		</div>
-		    <input class="inline" type="submit"/>
+		<input class="inline send-form" type="submit" value="GG"/>
 		{{ form_end(form) }}
 	</div>
 </div>

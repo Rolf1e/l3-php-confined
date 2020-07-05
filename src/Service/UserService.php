@@ -6,6 +6,7 @@ namespace App\Service;
 use Symfony\Component\HttpFoundation\Response;
 use App\Infra\Rest\UserInfosRestClient;
 use App\Entity\User;
+use App\Infra\Exception\UserBadPasswordException;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserService
@@ -35,6 +36,21 @@ class UserService
 		$entityManager->flush();
 
 		return new Response('Persist user ' . $user->getId());
+	}
+
+	public function checkPassword(EntityManagerInterface $entityManager, $username, $password) {
+		$repo = $entityManager->getRepository('App\Entity\User');
+		$actual = $repo->findOneBy(array('username' => $username ));
+		// we could encrypt password there
+		if($actual === null) {
+			throw new Exception();	
+		}
+
+		if($password == $actual->getPassword()) {
+			return $this->getUserInfos($actual->getSummoner());
+		}
+
+		throw new UserBadPasswordException($username);
 	}
 
 }

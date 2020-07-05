@@ -1,12 +1,14 @@
 .menu {
-	width: 750px;
-	height: 100px;
+	width: 450px;
 	margin: auto;
+	border: 1px black solid;
+	border-radius: 20px;
+	text-align: center;
 }
 
 .main-button {
 	border: 1px blue solid;
-	margin: 2px;
+	margin: 5px;
 	display: inline-block;
 }
 
@@ -14,13 +16,22 @@
 	display: inline-block;
 }
 
-.search-bar {
-	width: 500px;
-	display: inline-block;
-}
-
 .champion-block {
 	width: 910px;
 	margin: auto;
 }
+
+label.required {
+	margin: 10px;
+}
+
+.lol-logo {
+	width: 200px;
+	margin: auto;
+}
+
+.send-form {
+
+}
+
 

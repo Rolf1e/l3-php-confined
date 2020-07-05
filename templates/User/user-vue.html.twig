@@ -1,31 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block sumonner %}
-    <link rel="stylesheet" href="{{ asset('css/user.css') }}">
-	<a class="main-button p-3 mb-2 bg-primary text-white" href="/champion-list" class="">Champions</a>
-	<a class="main-button p-3 mb-2 bg-primary text-white" href="/" class="">Home</a>
+<link rel="stylesheet" href="{{ asset('css/user.css') }}">
+<a class="main-button p-3 mb-2 bg-primary text-white" href="/champion-list" class="">Champions</a>
+<a class="main-button p-3 mb-2 bg-primary text-white" href="/" class="">Home</a>
+{% if user is defined %}
 <div class="user-block card user-card">
 	{% set summoner = user.getSummoner() %}
 	{{ summoner.getName() }}
 	<img class="user-icon" src="{{ summoner.getProfileIcon() }}">
 	{% for queue in user.getLeagueEntry() %}
-		<div class="card">
-			<div class="rank">
-				<p>{{ queue.getQueueType() }} :  {{ queue.getTier() }} {{ queue.getRank() }}</p>
-				<p><p class="league-points">{{ queue.getLeaguePoints() }} points</p> {{ queue.getWins() }} W | {{ queue.getLosses() }} L </p>
-			</div>
+	<div class="card">
+		<div class="rank">
+			<p>{{ queue.getQueueType() }} :  {{ queue.getTier() }} {{ queue.getRank() }}</p>
+			<p><p class="league-points">{{ queue.getLeaguePoints() }} points</p> {{ queue.getWins() }} W | {{ queue.getLosses() }} L </p>
 		</div>
+	</div>
 	{% endfor %}
 </div>
+{% endif %}
+{% if loginForm is defined %}
 <div class="registration-form">
-	{{ form_start(registerForm) }}
-		<div class="inline">
-			{{ form_row(registerForm.username) }}
-			{{ form_row(registerForm.summoner) }}
-			{{ form_row(registerForm.email) }}
-			{{ form_row(registerForm.password) }}
-		</div>
-		<input class="inline" type="submit"/>
-	{{ form_end(registerForm) }}
+	{{ form_start(loginForm) }}
+	<div class="inline">
+		{{ form_row(loginForm.username) }}
+		{{ form_row(loginForm.password) }}
+	</div>
+	<input class="inline" type="submit"/>
+	{{ form_end(loginForm) }}
 </div>
+{% endif %}
 {% endblock %}
 

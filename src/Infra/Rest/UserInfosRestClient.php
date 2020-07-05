@@ -13,18 +13,18 @@ class UserInfosRestClient extends RestClient
 	{
 		parent::__construct(HttpClient::create());
 	}
-	
-	
-	public function getUserInfos($username)
+
+
+	public function getUserInfos($username) 
 	{
 		$summoner = $this->getUserEncryptedId($username);
+
 		$response = $this->httpClient->request('GET', BASE_URL . HTTPS_SUMMONER_INFOS . $summoner->getId() .'?api_key=' . API_KEY);
 		if(200 != $response->getStatusCode()) {
 			throw new UserDoesnotExistException($username);
 		}
 		$leagueEntry = $this->serializer->deserialize($response->getContent(), 'App\Entity\LeagueEntry[]', 'json');
 		return new UserInfos($summoner, $leagueEntry);
-
 	}	
 
 	private function getUserEncryptedId($username)

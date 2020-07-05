@@ -19,20 +19,77 @@ class UserController extends AbstractController
 		$this->userService = $userService;
 	}
 
+	/**
+	 * @Route("/register", name = "register")
+	 */
+	public function register(Request $request) {
+		$registerForm = $this->createFormBuilder()
+		       ->add('username', TextType::class)
+		       ->add('summoner', TextType::class)
+		       ->add('email', EmailType::class)
+		       ->add('password', PasswordType::class)
+		       ->getForm();
+
+		$registerForm->handleRequest($request);
+		if($registerForm->isSubmitted() && $registerForm->isValid()) {
+			$data = $registerForm->getData();
+			$entityManager = $this->getDoctrine()->getManager();
+			$this->userService->createUser($entityManager, $data['username'], $data['email'], $data['password'], $data['summoner']);
+			return $this->render(
+				'form/registered-vue.html.twig',
+				[
+					'username' => $data['username']
+				]
+			);
+		}
+
+		return $this->render(
+			'form/registerform-vue.html.twig',
+			[
+				'registerForm' => $registerForm->createView()
+			]
+		);
+	}
+
+
+	/**
+	 * @Route("/login", name = "login")
+	 */
+	public function login(Request $request) {
+		$loginForm = $this->createFormBuilder()
+		    ->add('username')
+		    ->add('password')
+		    ->getForm();
+
+		$loginForm->handleRequest($request);	
+
+		if($loginForm->isSubmitted() && $loginForm->isValid()) {
+			$data = $loginForm->getData();
+			return $this->judgeLoginForm($data);
+		}
+		return $this->render(
+			'User/user-vue.html.twig',
+			[
+				'loginForm' => $loginForm->createView()
+			]
+		);
+	}
+
 
 	/**
 	 * @Route("", name = "research")
 	 */
 	public function form(Request $request)
 	{
+		$label = 'summoner';
 		$form = $this->createFormBuilder()
-	       ->add('user', TextType::class)
+	       ->add($label, TextType::class)
 	       ->getForm();
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 			$data = $form->getData();
-			return $this->redirectToRoute('summoner', ['username' => $data['user']]);
+			return $this->redirectToRoute('summoner', ['username' => $data[$label]]);
 		}
 
 		return $this->render(
@@ -48,36 +105,68 @@ class UserController extends AbstractController
 	 */
 	public function infos(Request $request, $username) 
 	{	
-		$this->registerForm = $this->createFormBuilder()
-	       ->add('username', TextType::class)
-	       ->add('summoner', TextType::class)
-	       ->add('email', EmailType::class)
-	       ->add('password', PasswordType::class)
-	       ->getForm();
+		$registerForm = $this->createFormBuilder()
+		       ->add('username', TextType::class)
+		       ->add('summoner', TextType::class)
+		       ->add('email', EmailType::class)
+		       ->add('password', PasswordType::class)
+		       ->getForm();
 
-		$this->registerForm->handleRequest($request);
-		if($this->registerForm->isSubmitted() && $this->registerForm->isValid()) {
-			$data = $this->registerForm->getData();
+		$registerForm->handleRequest($request);
+		if($registerForm->isSubmitted() && $registerForm->isValid()) {
+			$data = $registerForm->getData();
 			$entityManager = $this->getDoctrine()->getManager();
 			$this->userService->createUser($entityManager, $data['username'], $data['email'], $data['password'], $data['summoner']);
 		}
 
+		try {
+			return $this->render(
+				'User/user-vue.html.twig',
+				[
+					'user' => $this->userInfos($username),
+					'registerForm' => $registerForm->createView()
+				]
+			);
 
-		return $this->render(
-			'User/user-vue.html.twig',
-			['user' => $this->userInfos($username),
-			'registerForm' => $this->registerForm->createView()]
-		);
+		} catch (UserDoesnotExistException $e) 
+		{
+			return $this->render( 
+				'User/user-not-found-vue.html.twig',
+				[
+					'exception' => $e->errorMessage()
+				]
+			);		
+		}
 	}
 
 
 	private function userInfos($username) 
 	{
+		return $this->userService->getUserInfos($username);	
+	}
+
+	private function judgeLoginForm($data) {
+		$username = $data['username'];
+		$password = $data['password'];
+
 		try {
-			return $this->userService->getUserInfos($username);	
-		} catch (UserDoesnotExistException $e)
-		{
-			return $e->errorMessage();		
+			$entityManager = $this->getDoctrine()->getManager();
+			$user = $this->userService->checkPassword($entityManager, $username, $password);
+
+			return $this->render(
+				'User/user-vue.html.twig',
+				[
+					'user' => $user
+				]
+			);
+		} catch (UserBadPasswordException $e) {
+			return $this->render(
+				'User/user-not-found-vue.html.twig',
+				[
+					'exception' => 'user ' . $username . 'is not found, maybe credentials are bad !'
+				]
+			);
 		}
 	}
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Infra\Exception;
 use Symfony\Component\Config\Definition\Exception\Exception;
+
 class UserDoesnotExistException extends Exception {
 
 	private $username;
