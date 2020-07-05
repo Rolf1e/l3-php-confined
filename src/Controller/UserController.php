@@ -8,6 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Request;
+use App\Infra\Exception\UserDoesnotExistException;
+use App\Infra\Exception\UserBadPasswordException;
+
 
 class UserController extends AbstractController
 {

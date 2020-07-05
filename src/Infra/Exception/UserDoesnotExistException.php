@@ -14,7 +14,7 @@ class UserDoesnotExistException extends Exception {
 
 	public function errorMessage() 
 	{
-		return 'Failed to find user ' . $username . ' in LoL APIs';
+		return 'Failed to find user ' . $this->username . ' in LoL APIs';
 	}
 
 }

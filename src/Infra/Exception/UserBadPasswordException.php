@@ -12,6 +12,6 @@ class UserBadPasswordException extends Exception {
 	}
 
 	public function errorMessage() {
-		return 'Bas password for user ' . $username;
+		return 'Bas password for user ' . $this->username;
 	}
 }
